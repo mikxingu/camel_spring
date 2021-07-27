@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.mikxingu.microservices.camelmicroserviceb.CurrencyExchange;
 
-//@Component
+@Component
 public class ActiveMqRecieverRouter extends RouteBuilder{
 	
 	
@@ -27,11 +27,11 @@ public class ActiveMqRecieverRouter extends RouteBuilder{
 		
 		
 		
-		from("activemq:my-activemq-queue")
-		.unmarshal()
-		.json(JsonLibrary.Jackson, CurrencyExchange.class)
-		.bean(myCurrencyExchangeProcessor)
-		.bean(myCurrencyExchangeTransformer)
+		from("activemq:split-queue")
+//		.unmarshal()
+//		.json(JsonLibrary.Jackson, CurrencyExchange.class)
+//		.bean(myCurrencyExchangeProcessor)
+//		.bean(myCurrencyExchangeTransformer)
 		.to("log:received-message-from-active-mq");
 		
 	}

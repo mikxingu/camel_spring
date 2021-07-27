@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class MyFileRouter extends RouteBuilder{
 	
 	@Autowired
@@ -18,10 +18,12 @@ public class MyFileRouter extends RouteBuilder{
 	
 	@Override
 	public void configure() throws Exception{
+		
+		//Pipeline Pattern
 		from("file:files/input")
 		.routeId("Files-Input-Route")
 		.transform().body(String.class)
-		.choice()
+		.choice()//Content based Routing
 			.when(simple("${file:ext} == 'xml'")) //USE OF SIMPLE LANGUAGE
 				.log("XML FILE FOUND")
 			//.when(simple("${body} contains 'USD'")) //USE OF SIMPLE LANGUAGE
