@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.mikxingu.microservices.camelmicroserviceb.CurrencyExchange;
 
-@Component
+//@Component
 public class ActiveMqRecieverRouter extends RouteBuilder{
 	
 	
